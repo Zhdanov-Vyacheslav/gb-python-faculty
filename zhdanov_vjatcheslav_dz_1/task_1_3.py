@@ -1,3 +1,4 @@
+# Урок 1 задача 3
 numbers = 100
 
 for idx in range(1, numbers):
