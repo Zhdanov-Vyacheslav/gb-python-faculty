@@ -10,8 +10,8 @@ result = 0
 result_increment = 0
 
 #  Определение длинны списка если задавать значение отличные от 1000
-if pool % 2 == 0:
-    pool = pool // 2 - 1
+if pool % 2 != 0:
+    pool = pool // 2 + 1
 else:
     pool = pool // 2
 
@@ -23,7 +23,7 @@ for idx in range(1, pool):
     for number_element in str(list_odd_number[idx]):  # Проходим поэлементно по числу и суммируем его элементы
         check_multiplicity += int(number_element)
     if check_multiplicity % denominator == 0:  # Проверка делиться ли без остатка
-        result += check_multiplicity
+        result += list_odd_number[idx]  # Не правильно понял задание, поправил
 
 for idx, temp in enumerate(list_odd_number):
     check_multiplicity = 0
@@ -31,7 +31,7 @@ for idx, temp in enumerate(list_odd_number):
     for number_element in str(list_odd_number[idx]) :  # Проходим поэлементно по числу и суммируем его элементы
         check_multiplicity += int(number_element)
     if check_multiplicity % denominator == 0:  # Проверка делиться ли без остатка
-        result_increment += check_multiplicity
+        result_increment += list_odd_number[idx]  # Не правильно понял задание, поправил
 
 print('Результат "а" = '+str(result))
 print('Результат "b" = '+str(result_increment))
