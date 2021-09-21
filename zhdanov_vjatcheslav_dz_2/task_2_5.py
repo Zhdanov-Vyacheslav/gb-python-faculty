@@ -14,16 +14,33 @@ input_list = [1236.6, 1881.37, 268.39, 3143.51, 2352.3, 489.38, 2510.41, 1712.68
               2360.1, 1588.8, 2956.32, 4066.52, 4025, 3968.28, 3056.04, 2233.61,
               2412.19, 4134.27, 1375.9, 1655.98]
 
-result = ''
-for element in input_list:
-    if str(element).find('.') != -1:
-        ruble, penny = str(element).split('.')
-        print(ruble, penny)
-        result += f'{int(ruble)} руб {int(penny):02d} коп, '
-    else:
-        result += f'{int(element)} руб 00 коп, '
-print(result)
-print(sorted(input_list))
-print(input_list)
-low_list = list(reversed(list(sorted(input_list))))
-print(low_list)
+
+def main(price_list):
+    result = ''
+    for element in price_list:
+        if str(element).find('.') != -1:
+            ruble, penny = str(element).split('.')
+            result += f'{int(ruble)} руб {int(penny):02d} коп,'
+        else:
+            result += f'{int(element)} руб 00 коп,'
+    return result[:-1]
+
+
+# A
+print(f'Вывод цен не меняя список'
+      f'\n {main(input_list)}')
+# B
+print(f'ID листа перед сортировкой = {id(input_list)}'
+      f'\nВывод цен, отсортированные по возрастанию'
+      f'\n {main(sorted(input_list))}')
+print(f'ID листа после сортировки = {id(input_list)}'
+      f'\nВывод списка вводных даных для докозательства'
+      f'\n {input_list}')
+# C
+new_list = list(reversed(list(sorted(input_list))))
+print(f'ID нового листа = {id(new_list)}'
+      f'\nВывод цен по убыванию'
+      f'\n {main(new_list)}')
+# D
+print(f'Вывод цены пяти самых дорогих товаров по возростанию'
+      f'\n {main(list(reversed(new_list[:6])))}')
