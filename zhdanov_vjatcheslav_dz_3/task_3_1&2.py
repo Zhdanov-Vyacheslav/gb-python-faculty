@@ -30,11 +30,10 @@ def num_translate(number):
         'nine': 'девять',
         'ten': 'десять'
     }
-    key = 1 if ord(number[0]) <= 90 else 0
-    if number.lower() not in translate_dict: return None
-    for eng, ru in translate_dict.items():
-        if eng == number.lower():
-            return ru.title() if key == 1 else ru
+    key = 1 if number[0].isupper() else 0
+    if number.lower() not in translate_dict:
+        return None
+    return translate_dict[number.lower()].title() if key == 1 else translate_dict[number.lower()]
 
 
 print('Введите число на английском')

@@ -32,13 +32,9 @@ def thesaurus_adv(*work_list):
     result = {}
     for value in work_list:
         name, surname = value.split(' ')
-        if surname[0] not in result:
-            result.setdefault(surname[0], {name[0]: [value]})
-        else:
-            if name[0] not in result.get(surname[0]):
-                result.get(surname[0]).setdefault(name[0], [value])
-            else:
-                result.get(surname[0]).get(name[0]).append(value)
+        result.setdefault(surname[0], {})
+        result[surname[0]].setdefault(name[0], [])
+        result[surname[0]][name[0]].append(value)
     return result
 
 
