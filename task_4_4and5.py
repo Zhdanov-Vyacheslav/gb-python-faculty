@@ -7,3 +7,8 @@
 # > python task_4_5.py USD
 # 75.18, 2020-09-05
 #
+import task_4_2and3 as currency
+import sys
+
+
+print(currency.currency_rates(sys.argv[1]))

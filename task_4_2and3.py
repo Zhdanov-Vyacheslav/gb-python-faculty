@@ -15,6 +15,27 @@
 #   кроме курса дату, которая передаётся в ответе сервера. Дата должна быть в
 #   виде объекта date. Подумайте, как извлечь дату из ответа, какой тип данных
 #   лучше использовать в ответе функции?
-import requests
 
-print(requests.get('http://www.cbr.ru/scripts/XML_daily.asp').next)
+import requests
+from decimal import *
+from datetime import datetime
+
+
+def currency_rates(val):
+    val = str(val).upper()
+    response = requests.get('http://www.cbr.ru/scripts/XML_daily.asp').text
+    if val not in response:
+        return None
+
+    rub_find = response[response.find('<Value>', response.find(val)) + 7:response.find('</Value>', response.find(val))]
+    day_find = response[response.find('Date="') + 6:response.find('"', response.find('Date="') + 6)].split('.')
+    day, month, year = map(int, day_find)
+    return f"{Decimal(rub_find.replace(',', '.')).quantize(Decimal('1.00'))}, " \
+           f"{datetime(day=day, month=month, year=year).date()}"
+
+
+if __name__ == '__main__':
+    print(currency_rates('USD'))
+    print(currency_rates('eur'))
+    print(currency_rates('840'))
+    print(currency_rates(978))
