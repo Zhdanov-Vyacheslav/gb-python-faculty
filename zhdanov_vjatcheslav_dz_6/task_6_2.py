@@ -6,16 +6,13 @@
 addr_list = []
 count_list = []
 with open('nginx_logs.txt') as open_log:
-    while True:
-        open_line = open_log.readline().strip()
-        if not open_line:
-            break
-        remote_addr = open_line[0:open_line.find('-') - 1]
-        if remote_addr not in addr_list:
-            addr_list.append(remote_addr)
-            count_list.append(1)
-        else:
-            count_list[addr_list.index(remote_addr)] += 1
+    open_line = open_log.readline().strip()
+    remote_addr = open_line[0:open_line.find('-') - 1]
+    if remote_addr not in addr_list:
+        addr_list.append(remote_addr)
+        count_list.append(1)
+    else:
+        count_list[addr_list.index(remote_addr)] += 1
 spammer = ''
 spammer_count = 0
 for addr, value in zip(addr_list, count_list):
