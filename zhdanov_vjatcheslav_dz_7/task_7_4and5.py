@@ -47,11 +47,19 @@ def write_file(input_dict: dict, input_name):
         json.dump(input_dict, write_f)
 
 
+def rdy_to_write(input_dict: dict):
+    rdy_d = {}
+    for key, value in sorted(input_dict.items()):
+        rdy_d.setdefault(key, (value[0], sorted(value[1])))
+    return rdy_d
+
+
 folder = os.path.join('C:\Program Files\JetBrains\PyCharm Community Edition 2021.2.1')
 walk_folder = []
-for value in os.walk(folder):
-    walk_folder.append(value)
+for el in os.walk(folder):
+    walk_folder.append(el)
 result = make_dict(walk_folder)
+result = rdy_to_write(result)
 write_file(result, folder)
-for key, value in sorted(result.items()):
-    print(str(key), value)
+for k, v in result.items():
+    print(k, v)
