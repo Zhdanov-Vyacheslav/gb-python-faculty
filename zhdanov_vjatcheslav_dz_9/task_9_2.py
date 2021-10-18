@@ -11,12 +11,12 @@
 
 class Road:
     def __init__(self, length, width):
-        self.__length = length
-        self.__width = width
+        self._length = length
+        self._width = width
 
     def masses(self, masses, thickness):
-        result = self.__length * self.__width * masses * thickness / 1000
-        return f'{self.__length} m*{self.__width} m*{masses} кг*{thickness} см = {result} т.'
+        result = self._length * self._width * masses * thickness / 1000
+        return f'{self._length} m*{self._width} m*{masses} кг*{thickness} см = {result} т.'
 
 
 test = Road(5000, 20)

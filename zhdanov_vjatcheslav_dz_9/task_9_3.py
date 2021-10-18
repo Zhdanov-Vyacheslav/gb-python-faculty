@@ -9,11 +9,11 @@
 #   проверить значения атрибутов, вызвать методы экземпляров.
 
 class Worker:
-    def __init__(self, name, surname, position, wage, bonus):
+    def __init__(self, name, surname, position, income_dict):
         self.name = name
         self.surname = surname
         self.position = position
-        self.__income = {'wage': wage, 'bonus': bonus}
+        self._income = income_dict
 
 
 class Position(Worker):
@@ -21,9 +21,9 @@ class Position(Worker):
         return f'{self.surname} {self.name}'
 
     def get_total_income(self):
-        return self._Worker__income["wage"]+self._Worker__income["bonus"]
+        return self._income["wage"]+self._income["bonus"]
 
 
-test = Position('Андрей', 'Павлов', 'стажер', 20000, 32000)
+test = Position('Андрей', 'Павлов', 'стажер', {"wage": 20000, "bonus": 15000})
 print(test.get_full_name())
 print(test.get_total_income())

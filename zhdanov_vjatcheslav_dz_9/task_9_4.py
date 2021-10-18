@@ -19,8 +19,8 @@ class Car:
     def stop(self):
         print('stop')
 
-    def turn(self):
-        print('turn')
+    def turn(self, direction):
+        print(f'turn in {direction}')
 
     def show_speed(self):
         return self.speed

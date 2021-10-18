@@ -13,13 +13,13 @@ from time import sleep
 
 class TrafficLight:
     def __init__(self):
-        self._color = (('красный', 7), ('желтый', 2), ('зеленый', 10))
+        self.__color = (('красный', 7), ('желтый', 2), ('зеленый', 10))
 
     def running(self):
-        cycler = cycle(range(len(self._color)))
+        cycler = cycle(range(len(self.__color)))
         for idx in cycler:
-            print(self._color[idx][0])
-            sleep(self._color[idx][1])
+            print(self.__color[idx][0])
+            sleep(self.__color[idx][1])
 
 
 traffic_light = TrafficLight()
