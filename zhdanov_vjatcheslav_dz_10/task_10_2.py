@@ -11,39 +11,36 @@
 from abc import ABC, abstractmethod
 
 
-class ClothesAbsClass(ABC):
-    @abstractmethod
-    def __init__(self):
-        pass
+class Clothes(ABC):
 
-
-class Clothes(ClothesAbsClass):
     def __init__(self, names):
         self.names = names
 
+    @abstractmethod
+    def sum_cloth(self):
+        pass
+
 
 class Costume(Clothes):
-    def __init__(self, name, H):
+    def __init__(self, name, h):
         super().__init__(name)
-        self.H = H
-        self._sum_cloth = self.sum_cloth
+        self.h = h
 
     @property
     def sum_cloth(self):
-        return 2 * self.H + 0.3
+        return 2 * self.h + 0.3
 
 
 class Coat(Clothes):
-    def __init__(self, name, V):
+    def __init__(self, name, v):
         super().__init__(name)
-        self.V = V
-        self._sum_cloth = self.sum_cloth
+        self.v = v
 
     @property
     def sum_cloth(self):
-        return self.V / 6.5 + 0.5
+        return self.v / 6.5 + 0.5
 
 
-mt = Costume('name', 6)
-test = Coat('name', 6)
-print(test.sum_cloth + mt.sum_cloth)
+costume = Costume('name', 6)
+coat = Coat('name', 6)
+print(coat.sum_cloth + costume.sum_cloth)
